@@ -1,0 +1,26 @@
+textbutton _("Credits") action ShowMenu("video_credits") style "navigation_textbutton" 
+
+
+
+screen video_credits():
+    modal True
+    add "transparent.png"  # Replace with your popup background image
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        has vbox
+
+        text "Do you want to watch the video?"
+
+        textbutton "Yes" action Start("video_scene")  
+        textbutton "No" action Hide("video_credits")  
+
+# Define the video scene
+label video_scene():
+    $ renpy.movie_cutscene("movies/video.webm")
+
+# Function to return to credits screen after video ends
+label ReturnToMainMenu():
+    show screen main_menu
+
